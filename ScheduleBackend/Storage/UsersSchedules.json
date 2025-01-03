@@ -1,0 +1,291 @@
+{
+  "UsersSchedules": [
+    {
+      "ScheduleId": 12345,
+      "Days": [
+        {
+          "DayNumber": 1,
+          "Activities": [
+            {
+              "ActivityNumber": 1,
+              "StartTime": "08:00",
+              "EndTime": "09:30",
+              "IsBooked": true,
+              "LessonName": "string"
+            },
+            {
+              "ActivityNumber": 2,
+              "StartTime": "10:00",
+              "EndTime": "11:30",
+              "IsBooked": true,
+              "LessonName": "string"
+            },
+            {
+              "ActivityNumber": 3,
+              "StartTime": "12:00",
+              "EndTime": "13:30",
+              "IsBooked": true,
+              "LessonName": "string"
+            },
+            {
+              "ActivityNumber": 4,
+              "StartTime": "14:00",
+              "EndTime": "15:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 5,
+              "StartTime": "16:00",
+              "EndTime": "17:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 6,
+              "StartTime": "18:00",
+              "EndTime": "19:30",
+              "IsBooked": false,
+              "LessonName": null
+            }
+          ]
+        },
+        {
+          "DayNumber": 2,
+          "Activities": [
+            {
+              "ActivityNumber": 1,
+              "StartTime": "08:00",
+              "EndTime": "09:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 2,
+              "StartTime": "10:00",
+              "EndTime": "11:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 3,
+              "StartTime": "12:00",
+              "EndTime": "13:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 4,
+              "StartTime": "14:00",
+              "EndTime": "15:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 5,
+              "StartTime": "16:00",
+              "EndTime": "17:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 6,
+              "StartTime": "18:00",
+              "EndTime": "19:30",
+              "IsBooked": false,
+              "LessonName": null
+            }
+          ]
+        },
+        {
+          "DayNumber": 3,
+          "Activities": [
+            {
+              "ActivityNumber": 1,
+              "StartTime": "08:00",
+              "EndTime": "09:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 2,
+              "StartTime": "10:00",
+              "EndTime": "11:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 3,
+              "StartTime": "12:00",
+              "EndTime": "13:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 4,
+              "StartTime": "14:00",
+              "EndTime": "15:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 5,
+              "StartTime": "16:00",
+              "EndTime": "17:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 6,
+              "StartTime": "18:00",
+              "EndTime": "19:30",
+              "IsBooked": false,
+              "LessonName": null
+            }
+          ]
+        },
+        {
+          "DayNumber": 4,
+          "Activities": [
+            {
+              "ActivityNumber": 1,
+              "StartTime": "08:00",
+              "EndTime": "09:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 2,
+              "StartTime": "10:00",
+              "EndTime": "11:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 3,
+              "StartTime": "12:00",
+              "EndTime": "13:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 4,
+              "StartTime": "14:00",
+              "EndTime": "15:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 5,
+              "StartTime": "16:00",
+              "EndTime": "17:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 6,
+              "StartTime": "18:00",
+              "EndTime": "19:30",
+              "IsBooked": false,
+              "LessonName": null
+            }
+          ]
+        },
+        {
+          "DayNumber": 5,
+          "Activities": [
+            {
+              "ActivityNumber": 1,
+              "StartTime": "08:00",
+              "EndTime": "09:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 2,
+              "StartTime": "10:00",
+              "EndTime": "11:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 3,
+              "StartTime": "12:00",
+              "EndTime": "13:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 4,
+              "StartTime": "14:00",
+              "EndTime": "15:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 5,
+              "StartTime": "16:00",
+              "EndTime": "17:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 6,
+              "StartTime": "18:00",
+              "EndTime": "19:30",
+              "IsBooked": false,
+              "LessonName": null
+            }
+          ]
+        },
+        {
+          "DayNumber": 6,
+          "Activities": [
+            {
+              "ActivityNumber": 1,
+              "StartTime": "08:00",
+              "EndTime": "09:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 2,
+              "StartTime": "10:00",
+              "EndTime": "11:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 3,
+              "StartTime": "12:00",
+              "EndTime": "13:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 4,
+              "StartTime": "14:00",
+              "EndTime": "15:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 5,
+              "StartTime": "16:00",
+              "EndTime": "17:30",
+              "IsBooked": false,
+              "LessonName": null
+            },
+            {
+              "ActivityNumber": 6,
+              "StartTime": "18:00",
+              "EndTime": "19:30",
+              "IsBooked": false,
+              "LessonName": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

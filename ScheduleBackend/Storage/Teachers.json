@@ -1,1 +1,32 @@
-[{"Id":1,"Username":"teacher1","ActiveSlots":5},{"Id":2,"Username":"teacher2","ActiveSlots":8},{"Id":3,"Username":"teacher3","ActiveSlots":3},{"Id":4,"Username":"teacher4","ActiveSlots":10},{"Id":0,"Username":"string","ActiveSlots":0}]
+[
+  {
+    "Id": 1,
+    "Username": "teacher1",
+    "ActiveSlots": 5
+  },
+  {
+    "Id": 2,
+    "Username": "teacher2",
+    "ActiveSlots": 8
+  },
+  {
+    "Id": 3,
+    "Username": "teacher3",
+    "ActiveSlots": 3
+  },
+  {
+    "Id": 4,
+    "Username": "teacher4",
+    "ActiveSlots": 10
+  },
+  {
+    "Id": 0,
+    "Username": "string",
+    "ActiveSlots": 0
+  }, 
+  {
+    "Id": 5,
+    "Username": "абоба",
+    "ActiveSlots": 6
+  }
+]

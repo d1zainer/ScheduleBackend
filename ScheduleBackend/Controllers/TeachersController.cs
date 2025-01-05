@@ -86,5 +86,24 @@ namespace ScheduleBackend.Controllers
             }
             return Ok(activeSlots);
         }
+
+
+
+        /// <summary>
+        /// Обовить доступные слоты для конкретного учителя
+        /// </summary>
+        /// <param name="teacherId">Идентификатор учителя</param>
+        /// <returns>Список доступных слотов</returns>
+        [HttpPost("SetActiveSlots")]
+        [ProducesResponseType(typeof(int), 200)]
+        public IActionResult UpdateActiveSlots(TeacherUpdateRequest teacherUpdate)
+        {
+            var teacher = _teachersService.UpdateActiveSlots(teacherUpdate);
+            if (teacher.Result == true)
+                return Ok(teacher);
+            else
+                return BadRequest(teacher);
+
+        }
     }
 }

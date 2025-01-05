@@ -20,4 +20,48 @@
         /// </summary>
         public int ActiveSlots { get; set; }
     }
+
+
+
+    public class TeacherUpdateRequest
+    {
+        /// <summary>
+        /// Уникальный идентификатор учителя.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Если 0 - прибавляем 1, если - 1 - отнимаем (инкримент и декримент)
+        /// </summary>
+        public int Action { get; set; }
+
+    }
+    public class TeacherUpdateResponse
+    {
+       
+        /// <summary>
+        /// Учитель 
+        /// </summary>
+        public Teacher Teacher  { get; set; }
+
+        /// <summary>
+        /// сообщение
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Результат
+        /// </summary>
+        public bool Result { get; set; }
+
+
+        public TeacherUpdateResponse(Teacher teacher, string message, bool result)
+        {
+            Teacher = teacher;
+            Message = message;
+            Result = result;
+        }
+    }
+
+
 }

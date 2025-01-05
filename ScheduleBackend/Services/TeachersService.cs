@@ -73,5 +73,28 @@ namespace ScheduleBackend.Services
             else
                 return null;
         }
+
+
+        public TeacherUpdateResponse? UpdateActiveSlots(TeacherUpdateRequest teacher)
+        {
+            var teachers = LoadAll();
+            var t = teachers.Find(x => x.Id == teacher.Id);
+            if (t.ActiveSlots == 0)
+                return  new TeacherUpdateResponse(t, "Количество слотов не обновлено", false);
+
+            if (teacher.Action == 0)
+            {
+                t.ActiveSlots++;
+                return new (t, "Количесвто слотов увеличилось", true);
+            }
+            else
+            {
+                t.ActiveSlots--;
+                return new(t, "Количесвто слотов уменьшилось", true);
+            }
+                    
+            
+            
+        }
     }
 }

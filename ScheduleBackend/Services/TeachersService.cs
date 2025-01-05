@@ -81,17 +81,15 @@ namespace ScheduleBackend.Services
             var t = teachers.Find(x => x.Id == teacher.Id);
             if (t.ActiveSlots == 0)
                 return  new TeacherUpdateResponse(t, "Количество слотов не обновлено", false);
-
             if (teacher.Action == 0)
             {
                 t.ActiveSlots++;
+                Save(teachers);
                 return new (t, "Количесвто слотов увеличилось", true);
             }
-            else
-            {
-                t.ActiveSlots--;
-                return new(t, "Количесвто слотов уменьшилось", true);
-            }
+            t.ActiveSlots--;
+            Save(teachers);
+            return new(t, "Количесвто слотов уменьшилось", true);
         }
         public List<Teacher>? GetTeachersByGroupId(int id)
         {

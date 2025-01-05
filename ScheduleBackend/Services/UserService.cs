@@ -38,6 +38,7 @@ namespace ScheduleBackend.Services
             try
             {
                 users.Add(user);
+
                 SaveUsers(users);
                 return true;
             }

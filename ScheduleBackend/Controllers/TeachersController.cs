@@ -13,10 +13,12 @@ namespace ScheduleBackend.Controllers
     public class TeachersController : ControllerBase
     {
         private readonly TeachersService _teachersService;
+        private readonly LessonService _lessonsService;
 
-        public TeachersController(TeachersService teachersService)
+        public TeachersController(TeachersService teachersService, LessonService lessonsService)
         {
             _teachersService = teachersService;
+            _lessonsService = lessonsService;
         }
 
         /// <summary>
@@ -117,6 +119,35 @@ namespace ScheduleBackend.Controllers
             var list = _teachersService.GetTeachersByGroupId(groupId);
             if (list == null)
                 return BadRequest("В группе нет учителей");
+            return Ok(list);
+        }
+
+
+
+        /// <summary>
+        /// Получить список уроков для преподавателя (по айди)
+        /// </summary>
+        /// <param name="teacherId">Идентификатор учителя</param>
+        /// <returns>Список доступных слотов</returns>
+        [HttpGet("GetAllTeachersLessons")]
+        [ProducesResponseType(typeof(int), 200)]
+        public IActionResult GetAllTeachersLessons()
+        {
+            return Ok(_lessonsService.GetTeachersSchedules().ToList());
+        }
+
+        /// <summary>
+        /// Получить список уроков для преподавателя (по айди)
+        /// </summary>
+        /// <param name="teacherId">Идентификатор учителя</param>
+        /// <returns>Список доступных слотов</returns>
+        [HttpGet("GetTeachersLessons/{teacherId}")]
+        [ProducesResponseType(typeof(int), 200)]
+        public IActionResult GetTeachersLessons(int teacherId)
+        {
+            var list = _lessonsService.GetLessons(teacherId);
+            if (list == null)
+                return BadRequest("Занятия не найдены");
             return Ok(list);
         }
     }

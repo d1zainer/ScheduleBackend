@@ -15,6 +15,7 @@ namespace ScheduleBackend
             builder.Services.AddSingleton<ScheduleService>();
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<TeachersService>();
+            builder.Services.AddSingleton<LessonService>();
             
             // Регистрация CORS политики
             builder.Services.AddCors(options =>

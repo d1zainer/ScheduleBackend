@@ -1,0 +1,40 @@
+[
+  {
+    "TeacherId": 1,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Математика"
+      },
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "09:45",
+        "EndTime": "11:15",
+        "LessonName": "Физика"
+      }
+    ]
+  },
+  {
+    "ScheduleId": 2,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 1,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Химия"
+      },
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "11:45",
+        "EndTime": "13:15",
+        "LessonName": "Биология"
+      }
+    ]
+  }
+]

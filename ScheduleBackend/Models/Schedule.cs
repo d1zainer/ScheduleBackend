@@ -25,6 +25,13 @@
         /// Список расписаний на каждый день в рамках данного расписания.
         /// </summary>
         public List<DaySchedule> Days { get; set; }
+
+
+        public Schedule(int scheduleId, List<DaySchedule> days)
+        {
+            ScheduleId = scheduleId;
+            Days = days;
+        }
     }
 
     /// <summary>

@@ -10,6 +10,7 @@ namespace ScheduleBackend.Services
         public static string Users => Path.Combine(Directory.GetCurrentDirectory(), "Storage", "Users.json");
         public static string Teachers => Path.Combine(Directory.GetCurrentDirectory(), "Storage", "Teachers.json");
         public static string UsersSchedules => Path.Combine(Directory.GetCurrentDirectory(), "Storage", "UsersSchedules.json");
+        public static string TeachersSchedules => Path.Combine(Directory.GetCurrentDirectory(), "Storage", "TeachersSchedules.json");
 
         public static List<T> GetJson<T>(string filePath)
         {

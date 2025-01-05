@@ -9,14 +9,16 @@ using ScheduleBackend.Services;
 public class UsersController : ControllerBase
 {
     private readonly UserService _userService;
+    private readonly ScheduleService _scheduleService;
 
     /// <summary>
     /// Конструктор UsersController.
     /// </summary>
     /// <param name="userService">Сервис для работы с пользователями.</param>
-    public UsersController(UserService userService)
+    public UsersController(UserService userService, ScheduleService schedule)
     {
         _userService = userService;
+        _scheduleService = schedule;
     }
 
     /// <summary>
@@ -48,6 +50,7 @@ public class UsersController : ControllerBase
         var result = _userService.Add(userRequest);
         if (result)
         {
+            _scheduleService.Add(userRequest.Id);
             return Ok(result);
         }
         return BadRequest(result);

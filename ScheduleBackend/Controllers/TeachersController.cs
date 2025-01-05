@@ -106,7 +106,7 @@ namespace ScheduleBackend.Controllers
 
         }
         /// <summary>
-        /// Обовить доступные слоты для конкретного учителя
+        /// Получить список учителей для курса
         /// </summary>
         /// <param name="teacherId">Идентификатор учителя</param>
         /// <returns>Список доступных слотов</returns>

@@ -10,22 +10,22 @@
               "ActivityNumber": 1,
               "StartTime": "08:00",
               "EndTime": "09:30",
-              "IsBooked": true,
-              "LessonName": "string"
+              "IsBooked": false,
+              "LessonName": null
             },
             {
               "ActivityNumber": 2,
               "StartTime": "10:00",
               "EndTime": "11:30",
-              "IsBooked": true,
-              "LessonName": "string"
+              "IsBooked": false,
+              "LessonName": null
             },
             {
               "ActivityNumber": 3,
               "StartTime": "12:00",
               "EndTime": "13:30",
-              "IsBooked": true,
-              "LessonName": "string"
+              "IsBooked": false,
+              "LessonName": null
             },
             {
               "ActivityNumber": 4,

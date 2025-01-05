@@ -1,31 +1,37 @@
 [
   {
+    "GroupId": 1,
     "Id": 1,
     "Username": "teacher1",
     "ActiveSlots": 5
   },
   {
+    "GroupId": 1,
     "Id": 2,
     "Username": "teacher2",
-    "ActiveSlots": 8
+    "ActiveSlots": 0
   },
   {
+    "GroupId": 1,
     "Id": 3,
     "Username": "teacher3",
     "ActiveSlots": 3
   },
   {
+    "GroupId": 2,
     "Id": 4,
     "Username": "teacher4",
     "ActiveSlots": 10
   },
   {
-    "Id": 0,
+    "GroupId": 2,
+    "Id": 5,
     "Username": "string",
     "ActiveSlots": 0
-  }, 
+  },
   {
-    "Id": 5,
+    "GroupId": 2,
+    "Id": 6,
     "Username": "абоба",
     "ActiveSlots": 6
   }

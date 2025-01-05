@@ -92,9 +92,17 @@ namespace ScheduleBackend.Services
                 t.ActiveSlots--;
                 return new(t, "Количесвто слотов уменьшилось", true);
             }
-                    
-            
-            
+        }
+        public List<Teacher>? GetTeachersByGroupId(int id)
+        {
+            var teachers = LoadAll();
+            var t = teachers.Where(x => x.GroupId == id).ToList();
+            if (t.Count == 0)
+            {
+                return null;
+            }
+
+            return t;
         }
     }
 }

@@ -105,5 +105,19 @@ namespace ScheduleBackend.Controllers
                 return BadRequest(teacher);
 
         }
+        /// <summary>
+        /// Обовить доступные слоты для конкретного учителя
+        /// </summary>
+        /// <param name="teacherId">Идентификатор учителя</param>
+        /// <returns>Список доступных слотов</returns>
+        [HttpGet("GetTeachersByGroupID/{groupId}")]
+        [ProducesResponseType(typeof(int), 200)]
+        public IActionResult GetTeachersByGroupID(int groupId)
+        {
+            var list = _teachersService.GetTeachersByGroupId(groupId);
+            if (list == null)
+                return BadRequest("В группе нет учителей");
+            return Ok(list);
+        }
     }
 }

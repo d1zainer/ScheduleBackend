@@ -9,16 +9,14 @@ namespace ScheduleBackend.Services
 
         public List<TeacherSchedule?> LoadTeachersSchedules()
         {
-            
-                if (!File.Exists(_jsonFilePath))
-                {
-                    return new List<TeacherSchedule>();
-                }
-                var json = File.ReadAllText(_jsonFilePath);
-                return JsonConvert.DeserializeObject<List<TeacherSchedule>>(json);
-            
-            
+            if (!File.Exists(_jsonFilePath))
+            {
+                return new List<TeacherSchedule>();
+            }
+            var json = File.ReadAllText(_jsonFilePath);
+            return JsonConvert.DeserializeObject<List<TeacherSchedule>>(json);
         }
+
         private void SaveTeachersSchedules(List<TeacherSchedule> schedules)
         {
             try
@@ -28,7 +26,6 @@ namespace ScheduleBackend.Services
             }
             catch (IOException)
             {
-
             }
         }
 

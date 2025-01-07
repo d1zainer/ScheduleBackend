@@ -1,4 +1,7 @@
-﻿namespace ScheduleBackend.Models
+﻿using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
+
+namespace ScheduleBackend.Models
 {
     /// <summary>
     /// Корневой объект для представления расписания пользователей.
@@ -25,7 +28,6 @@
         /// Список расписаний на каждый день в рамках данного расписания.
         /// </summary>
         public List<DaySchedule> Days { get; set; }
-
 
         public Schedule(int scheduleId, List<DaySchedule> days)
         {
@@ -112,10 +114,74 @@
         public bool IsBooked { get; set; }
     }
 
+    public class CourseCheckRequest
+    {
+        /// <summary>
+        /// Название курса или занятия. Может быть пустым, если не задано.
+        /// </summary>
+        public string LessonName { get; set; }
+
+        /// <summary>
+        /// Список занятий в курсе
+        /// </summary>
+        public List<ActivityCheck> Activities { get; set; }
+    }
+
+    public class CourseCheckResponse
+    {
+        /// <summary>
+        /// Результат
+        /// </summary>
+        public bool Result { get; set; }
+
+        /// <summary>
+        /// Список занятий в курсе
+        /// </summary>
+        public List<ActivityCheck>? BookedActivities { get; set; }
+    }
+
+
+    public class CourseCheckOkResponseExample : IExamplesProvider<CourseCheckResponse>
+    {
+        public CourseCheckResponse GetExamples()
+        {
+            return new CourseCheckResponse
+            {
+                Result = true,
+                BookedActivities = null
+            };
+        }
+    }
+
+
+
+
+    public class CourseCheckErrorResponseExample : IExamplesProvider<CourseCheckResponse>
+    {
+        public CourseCheckResponse GetExamples()
+        {
+            return new CourseCheckResponse
+            {
+                Result = true,
+                BookedActivities = new List<ActivityCheck>
+                {
+                    new ActivityCheck
+                    {
+                        ScheduleId = 1,
+                        DayNumber = 2,
+                        ActivityNumber = 3,
+                        LessonName = "Урок Абобы"
+                    }
+                }
+
+            };
+        }
+    }
+
     /// <summary>
-    /// Запрос для проверки наличия занятых мест в расписании.
+    /// Класс для проверки наличия занятых мест в расписании.
     /// </summary>
-    public class ScheduleCheckRequest
+    public class ActivityCheck
     {
         /// <summary>
         /// ID расписания для проверки.
@@ -131,5 +197,11 @@
         /// Номер занятия для проверки.
         /// </summary>
         public int ActivityNumber { get; set; }
+
+        /// <summary>
+        /// Название курса или занятия. Может быть пустым, если не задано.
+        /// </summary>
+        [SwaggerSchema(ReadOnly = true, WriteOnly = true, Description = "Internal use only")]
+        public string? LessonName { get; set; } = null;
     }
 }

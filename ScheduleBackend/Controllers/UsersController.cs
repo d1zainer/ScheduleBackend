@@ -3,7 +3,6 @@ using ScheduleBackend.Models;
 
 using ScheduleBackend.Services;
 
-
 [Route("[controller]")]
 [ApiController]
 public class UsersController : ControllerBase

@@ -1,6 +1,5 @@
 ﻿namespace ScheduleBackend.Models
 {
-
     public class Lesson
     {
         /// <summary>

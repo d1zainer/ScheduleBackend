@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ScheduleBackend.Models;
 using ScheduleBackend.Services;
 
@@ -82,14 +81,12 @@ namespace ScheduleBackend.Controllers
         public IActionResult GetActiveSlots(int teacherId)
         {
             var activeSlots = _teachersService.GetActiveSlots(teacherId);
-            if (activeSlots == null) 
+            if (activeSlots == null)
             {
                 return NotFound("Нет доступных слотов для выбранного учителя.");
             }
             return Ok(activeSlots);
         }
-
-
 
         /// <summary>
         /// Обовить доступные слоты для конкретного учителя
@@ -105,8 +102,8 @@ namespace ScheduleBackend.Controllers
                 return Ok(teacher);
             else
                 return BadRequest(teacher);
-
         }
+
         /// <summary>
         /// Получить список учителей для курса
         /// </summary>
@@ -121,8 +118,6 @@ namespace ScheduleBackend.Controllers
                 return BadRequest("В группе нет учителей");
             return Ok(list);
         }
-
-
 
         /// <summary>
         /// Получить список уроков для преподавателя (по айди)

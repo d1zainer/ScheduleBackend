@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
+using ScheduleBackend.Models;
 using ScheduleBackend.Services;
 using System.Reflection;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace ScheduleBackend
 {
@@ -11,12 +12,11 @@ namespace ScheduleBackend
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            
             builder.Services.AddSingleton<ScheduleService>();
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<TeachersService>();
             builder.Services.AddSingleton<LessonService>();
-            
+
             // Регистрация CORS политики
             builder.Services.AddCors(options =>
             {
@@ -38,9 +38,14 @@ namespace ScheduleBackend
                 {
                     Title = "QR API",
                 });
+                c.ExampleFilters();
+                
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
+
+            builder.Services.AddSwaggerExamplesFromAssemblyOf<CourseCheckOkResponseExample>();
+            builder.Services.AddSwaggerExamplesFromAssemblyOf<CourseCheckErrorResponseExample>();
 
             var app = builder.Build();
 

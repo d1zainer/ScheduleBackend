@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ScheduleBackend.Models;
 using ScheduleBackend.Services;
+using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
+using System.Net;
 
 namespace ScheduleBackend.Controllers
 {
@@ -54,7 +56,7 @@ namespace ScheduleBackend.Controllers
         }
 
         /// <summary>
-        /// Обновить расписание для нескольких пользователей
+        /// Обновить расписание (несколько занятий)
         /// </summary>
         /// <param name="updateRequest">Список запросов на обновление расписания</param>
         /// <returns>Список обновленных расписаний</returns>
@@ -82,7 +84,7 @@ namespace ScheduleBackend.Controllers
         /// <returns>Информация о доступности активностей и о забронированных активностях</returns>
         [HttpPost("checkListActivities")]
         [ProducesResponseType(typeof(object), 200)]
-        public IActionResult CheckActivities([FromBody] List<ScheduleCheckRequest> updateRequest)
+        public IActionResult CheckActivities([FromBody] List<ActivityCheck> updateRequest)
         {
             var (isSuccess, bookedActivities) = _scheduleService.CheckActivities(updateRequest);
 
@@ -92,7 +94,7 @@ namespace ScheduleBackend.Controllers
                 {
                     success = true,
                     message = "Все активности доступны.",
-                    bookedActivities = (List<ScheduleCheckRequest>?)null
+                    bookedActivities = (List<ActivityCheck>?)null
                 });
             }
 
@@ -111,11 +113,31 @@ namespace ScheduleBackend.Controllers
         /// <returns>Результат проверки доступности</returns>
         [HttpPost("checkActivity")]
         [ProducesResponseType(typeof(bool), 200)]
-        public IActionResult CheckActivities(ScheduleCheckRequest updateRequest)
+        public IActionResult CheckActivities(ActivityCheck updateRequest)
         {
             var result = _scheduleService.CheckActivity(updateRequest);
             if (result)
                 return Ok(result);
+            return BadRequest(result);
+        }
+
+        [HttpPost("checkCourse")]
+        [ProducesResponseType(typeof(object), 200)]
+        [ProducesResponseType(typeof(object), 400)]
+        [SwaggerOperation(Summary = "Проверяет, записался ли пользователь на конкретный курс",
+            Description = "Возвращает информацию о доступности активностей и забронированных активностях.")]
+        [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(CourseCheckOkResponseExample))] // Пример для ответа 200
+        [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(CourseCheckErrorResponseExample))] // Пример для ответа 200
+        
+        public IActionResult CheckCourse([FromBody] CourseCheckRequest updateRequest)
+        {
+            var result = _scheduleService.CheckCourse(updateRequest);
+
+            if (result.Result == true)
+            {
+                return Ok(result);
+            }
+
             return BadRequest(result);
         }
     }

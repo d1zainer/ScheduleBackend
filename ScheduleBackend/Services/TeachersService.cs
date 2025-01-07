@@ -26,9 +26,9 @@ namespace ScheduleBackend.Services
             }
             catch (IOException)
             {
-
             }
         }
+
         public bool Add(Teacher user)
         {
             var users = LoadAll();
@@ -42,8 +42,8 @@ namespace ScheduleBackend.Services
             {
                 return false;
             }
-
         }
+
         public bool Delete(int id)
         {
             var users = LoadAll();
@@ -59,6 +59,7 @@ namespace ScheduleBackend.Services
                 return false;
             }
         }
+
         public List<Teacher> GetUsers()
         {
             return LoadAll(); ;
@@ -68,29 +69,29 @@ namespace ScheduleBackend.Services
         {
             var teachers = LoadAll();
             var t = teachers.Find(x => x.Id == id);
-            if(t != null)
+            if (t != null)
                 return t.ActiveSlots;
             else
                 return null;
         }
-
 
         public TeacherUpdateResponse? UpdateActiveSlots(TeacherUpdateRequest teacher)
         {
             var teachers = LoadAll();
             var t = teachers.Find(x => x.Id == teacher.Id);
             if (t.ActiveSlots == 0)
-                return  new TeacherUpdateResponse(t, "Количество слотов не обновлено", false);
+                return new TeacherUpdateResponse(t, "Количество слотов не обновлено", false);
             if (teacher.Action == 0)
             {
                 t.ActiveSlots++;
                 Save(teachers);
-                return new (t, "Количесвто слотов увеличилось", true);
+                return new(t, "Количесвто слотов увеличилось", true);
             }
             t.ActiveSlots--;
             Save(teachers);
             return new(t, "Количесвто слотов уменьшилось", true);
         }
+
         public List<Teacher>? GetTeachersByGroupId(int id)
         {
             var teachers = LoadAll();

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ScheduleBackend.Models;
 
 namespace ScheduleBackend.Services
@@ -8,18 +7,16 @@ namespace ScheduleBackend.Services
     {
         private string _filePath => JsonService.Users;
 
-
         public List<User> LoadUsers()
         {
             if (!File.Exists(_filePath))
             {
-                return new List<User>(); 
+                return new List<User>();
             }
             var json = File.ReadAllText(_filePath);
             return JsonConvert.DeserializeObject<List<User>>(json);
         }
-        
-     
+
         public void SaveUsers(List<User> schedules)
         {
             try
@@ -29,9 +26,9 @@ namespace ScheduleBackend.Services
             }
             catch (IOException)
             {
-
             }
         }
+
         public bool Add(User user)
         {
             var users = LoadUsers();
@@ -46,8 +43,8 @@ namespace ScheduleBackend.Services
             {
                 return false;
             }
-
         }
+
         public bool Delete(int id)
         {
             var users = LoadUsers();
@@ -63,10 +60,12 @@ namespace ScheduleBackend.Services
                 return false;
             }
         }
+
         public List<User> GetUsers()
         {
             return LoadUsers(); ;
         }
+
         public (User?, bool) Authenticate(string username, string password)
         {
             var users = LoadUsers();

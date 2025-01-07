@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
 using ScheduleBackend.Models;
 
 namespace ScheduleBackend.Services
@@ -7,8 +6,6 @@ namespace ScheduleBackend.Services
     public class ScheduleService
     {
         private string _jsonFilePath => JsonService.UsersSchedules;
-
-        
 
         public List<Schedule> GetSchedules()
         {
@@ -33,23 +30,24 @@ namespace ScheduleBackend.Services
             var schedules = GetSchedules();
             return schedules.FirstOrDefault(u => u.ScheduleId == userId);
         }
+
         public Schedule? UpdateSchedule(ScheduleUpdateRequest updateRequest)
         {
             var schedules = GetSchedules();
             var schedule = schedules.FirstOrDefault(s => s.ScheduleId == updateRequest.ScheduleId);
             if (schedule == null)
             {
-                return null; 
+                return null;
             }
             var daySchedule = schedule.Days.FirstOrDefault(day => day.DayNumber == updateRequest.DayNumber);
             if (daySchedule == null)
             {
-                return null; 
+                return null;
             }
             var activity = daySchedule.Activities.FirstOrDefault(c => c.ActivityNumber == updateRequest.ActivityNumber);
             if (activity == null)
             {
-                return null; 
+                return null;
             }
             if (updateRequest.NewLessonName == null)
             {
@@ -60,10 +58,11 @@ namespace ScheduleBackend.Services
             SaveSchedules(schedules);
             return schedule;
         }
-        public (bool, List<ScheduleCheckRequest>?) CheckActivities(List<ScheduleCheckRequest> updateRequest)
+
+        public (bool, List<ActivityCheck>?) CheckActivities(List<ActivityCheck> updateRequest)
         {
-            bool result = true; 
-            List<ScheduleCheckRequest>? bookedActivities = null;
+            bool result = true;
+            List<ActivityCheck>? bookedActivities = null;
             var schedules = GetSchedules();
             foreach (var sh in updateRequest)
             {
@@ -74,12 +73,50 @@ namespace ScheduleBackend.Services
                 var activity = daySchedule.Activities.FirstOrDefault(c => c.ActivityNumber == sh.ActivityNumber);
                 if (activity == null || !activity.IsBooked) continue;
                 result = false;
-                if (bookedActivities == null) bookedActivities = new List<ScheduleCheckRequest>();
-                bookedActivities.Add(sh);
+                if (bookedActivities == null) bookedActivities = new List<ActivityCheck>();
+                bookedActivities.Add(new ActivityCheck()
+                {
+                    ScheduleId = sh.ScheduleId,
+                    ActivityNumber = sh.ActivityNumber,
+                    DayNumber = sh.DayNumber,
+                    LessonName = activity.LessonName,
+                });
             }
             return (result, bookedActivities);
         }
-        public bool CheckActivity(ScheduleCheckRequest updateRequest)
+
+        public CourseCheckResponse CheckCourse(CourseCheckRequest updateRequest)
+        {
+            bool result = true;
+            List<ActivityCheck>? bookedActivities = null;
+            var schedules = GetSchedules();
+            foreach (var sh in updateRequest.Activities)
+            {
+                var schedule = schedules.FirstOrDefault(s => s.ScheduleId == sh.ScheduleId);
+                if (schedule == null) continue;
+                var daySchedule = schedule.Days.FirstOrDefault(day => day.DayNumber == sh.DayNumber);
+                if (daySchedule == null) continue;
+                var activity = daySchedule.Activities.FirstOrDefault(c => c.ActivityNumber == sh.ActivityNumber);
+                if (activity == null || (activity.IsBooked && activity.LessonName == updateRequest.LessonName)) continue;
+                result = false;
+                if (bookedActivities == null) bookedActivities = new List<ActivityCheck>();
+                bookedActivities.Add(new ActivityCheck()
+                {
+                    ScheduleId = sh.ScheduleId,
+                    ActivityNumber = sh.ActivityNumber,
+                    DayNumber = sh.DayNumber,
+                    LessonName = activity.LessonName,
+                });
+            }
+
+            return new CourseCheckResponse
+            {
+                Result = result,
+                BookedActivities = bookedActivities
+            };
+        }
+
+        public bool CheckActivity(ActivityCheck updateRequest)
         {
             bool result = false;
             var schedules = GetSchedules();
@@ -90,6 +127,7 @@ namespace ScheduleBackend.Services
                 result = true;
             return result;
         }
+
         private void SaveSchedules(List<Schedule> schedules)
         {
             try
@@ -115,7 +153,6 @@ namespace ScheduleBackend.Services
             bool exists = schedules.Any(x => x.ScheduleId == id);
             if (!exists)
             {
-         
                 var newSchedule = new Schedule(id, GenerateDefaultDays());
 
                 schedules.Add(newSchedule);
@@ -137,7 +174,6 @@ namespace ScheduleBackend.Services
             {
                 var activities = new List<Activity>();
 
-              
                 for (int activityNumber = 1; activityNumber <= 6; activityNumber++)
                 {
                     activities.Add(new Activity
@@ -173,8 +209,5 @@ namespace ScheduleBackend.Services
             var baseHour = 8 + (activityNumber - 1) * 2 + 1; // Окончание занятий через 1.5 часа
             return $"{baseHour:D2}:30";
         }
-
-       
-
     }
 }

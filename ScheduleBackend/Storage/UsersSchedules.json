@@ -10,8 +10,8 @@
               "ActivityNumber": 1,
               "StartTime": "08:00",
               "EndTime": "09:30",
-              "IsBooked": true,
-              "LessonName": "Рисование для начинающих"
+              "IsBooked": false,
+              "LessonName": null
             },
             {
               "ActivityNumber": 2,
@@ -125,8 +125,8 @@
               "ActivityNumber": 4,
               "StartTime": "14:00",
               "EndTime": "15:30",
-              "IsBooked": true,
-              "LessonName": "Рисование для начинающих"
+              "IsBooked": false,
+              "LessonName": null
             },
             {
               "ActivityNumber": 5,
@@ -205,8 +205,8 @@
               "ActivityNumber": 2,
               "StartTime": "10:00",
               "EndTime": "11:30",
-              "IsBooked": true,
-              "LessonName": "Рисование для начинающих"
+              "IsBooked": false,
+              "LessonName": null
             },
             {
               "ActivityNumber": 3,

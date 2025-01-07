@@ -26,21 +26,28 @@
     ]
   },
   {
-    "ScheduleId": 2,
+    "TeacherId": 2,
     "Lessons": [
       {
         "DayNumber": 2,
-        "ActivityNumber": 1,
+        "ActivityNumber": 2,
         "StartTime": "10:00",
         "EndTime": "11:30",
-        "LessonName": "Химия"
+        "LessonName": "Рисование для начинающих"
       },
       {
-        "DayNumber": 2,
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Рисование для начинающих"
+      },
+      {
+        "DayNumber": 6,
         "ActivityNumber": 2,
-        "StartTime": "11:45",
-        "EndTime": "13:15",
-        "LessonName": "Биология"
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Рисование для начинающих"
       }
     ]
   }

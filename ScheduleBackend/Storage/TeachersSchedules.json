@@ -7,14 +7,21 @@
         "ActivityNumber": 1,
         "StartTime": "08:00",
         "EndTime": "09:30",
-        "LessonName": "Математика"
+        "LessonName": "Рисование для начинающих"
       },
       {
-        "DayNumber": 1,
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Рисование для начинающих"
+      },
+      {
+        "DayNumber": 5,
         "ActivityNumber": 2,
-        "StartTime": "09:45",
-        "EndTime": "11:15",
-        "LessonName": "Физика"
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Рисование для начинающих"
       }
     ]
   },

@@ -50,5 +50,577 @@
         "LessonName": "Рисование для начинающих"
       }
     ]
+  },
+  {
+    "TeacherId": 3,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Рисование для начинающих"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Рисование для начинающих"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Рисование для начинающих"
+      }
+    ]
+  },
+  {
+    "TeacherId": 4,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Английский язык для детей"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Английский язык для детей"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Английский язык для детей"
+      }
+    ]
+  },
+  {
+    "TeacherId": 5,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Английский язык для детей"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "16:00",
+        "EndTime": "17:30",
+        "LessonName": "Английский язык для детей"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Английский язык для детей"
+      }
+    ]
+  },
+  {
+    "TeacherId": 6,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Английский язык для детей"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Английский язык для детей"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Английский язык для детей"
+      }
+    ]
+  },
+  {
+    "TeacherId": 7,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Основы программирования"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Основы программирования"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Основы программирования"
+      }
+    ]
+  },
+  {
+    "TeacherId": 8,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Основы программирования"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Основы программирования"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Основы программирования"
+      }
+    ]
+  },
+  {
+    "TeacherId": 9,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Основы программирования"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Основы программирования"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Основы программирования"
+      }
+    ]
+  },
+  {
+    "TeacherId": 10,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Робототехника"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Робототехника"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Робототехника"
+      }
+    ]
+  },
+  {
+    "TeacherId": 11,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Робототехника"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "16:00",
+        "EndTime": "17:30",
+        "LessonName": "Робототехника"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Робототехника"
+      }
+    ]
+  },
+  {
+    "TeacherId": 12,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Робототехника"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Робототехника"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Робототехника"
+      }
+    ]
+  },
+  {
+    "TeacherId": 13,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Хореография"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Хореография"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Хореография"
+      }
+    ]
+  },
+  {
+    "TeacherId": 14,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Хореография"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Хореография"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Хореография"
+      }
+    ]
+  },
+  {
+    "TeacherId": 15,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Хореография"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Хореография"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Хореография"
+      }
+    ]
+  },
+  {
+    "TeacherId": 16,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Финансовая грамотность"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Финансовая грамотность"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Финансовая грамотность"
+      }
+    ]
+  },
+  {
+    "TeacherId": 17,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Финансовая грамотность"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "16:00",
+        "EndTime": "17:30",
+        "LessonName": "Финансовая грамотность"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Финансовая грамотность"
+      }
+    ]
+  },
+  {
+    "TeacherId": 18,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Финансовая грамотность"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Финансовая грамотность"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Финансовая грамотность"
+      }
+    ]
+  },
+  {
+    "TeacherId": 19,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Экспериментальная наука"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Экспериментальная наука"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Экспериментальная наука"
+      }
+    ]
+  },
+  {
+    "TeacherId": 20,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Экспериментальная наука"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Экспериментальная наука"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Экспериментальная наука"
+      }
+    ]
+  },
+  {
+    "TeacherId": 21,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Экспериментальная наука"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Экспериментальная наука"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Экспериментальная наука"
+      }
+    ]
+  },
+  {
+    "TeacherId": 22,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 1,
+        "StartTime": "08:00",
+        "EndTime": "09:30",
+        "LessonName": "Музыка и вокал"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 4,
+        "StartTime": "14:00",
+        "EndTime": "15:30",
+        "LessonName": "Музыка и вокал"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Музыка и вокал"
+      }
+    ]
+  },
+  {
+    "TeacherId": 23,
+    "Lessons": [
+      {
+        "DayNumber": 2,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Музыка и вокал"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 5,
+        "StartTime": "16:00",
+        "EndTime": "17:30",
+        "LessonName": "Музыка и вокал"
+      },
+      {
+        "DayNumber": 6,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Музыка и вокал"
+      }
+    ]
+  },
+  {
+    "TeacherId": 24,
+    "Lessons": [
+      {
+        "DayNumber": 1,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Музыка и вокал"
+      },
+      {
+        "DayNumber": 3,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Музыка и вокал"
+      },
+      {
+        "DayNumber": 5,
+        "ActivityNumber": 2,
+        "StartTime": "10:00",
+        "EndTime": "11:30",
+        "LessonName": "Музыка и вокал"
+      }
+    ]
   }
 ]

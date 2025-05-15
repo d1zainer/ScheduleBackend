@@ -1,8 +1,10 @@
 using Microsoft.OpenApi.Models;
 using ScheduleBackend.Models;
-using ScheduleBackend.Services;
 using System.Reflection;
+using ScheduleBackend.Repositories.Interfaces;
+using ScheduleBackend.Repositories.Json;
 using Swashbuckle.AspNetCore.Filters;
+using ScheduleBackend.Services.Entity;
 
 namespace ScheduleBackend
 {
@@ -12,10 +14,16 @@ namespace ScheduleBackend
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSingleton<ScheduleService>();
-            builder.Services.AddSingleton<UserService>();
-            builder.Services.AddSingleton<TeachersService>();
-            builder.Services.AddSingleton<LessonService>();
+            builder.Services.AddScoped<ITeacherRepository, JsonTeacherRepository>();
+            builder.Services.AddScoped<ITeacherScheduleRepository, JsonTeacherScheduleRepository>();
+            builder.Services.AddScoped<IScheduleRepository, JsonScheduleRepository>();
+            builder.Services.AddScoped<IUserRepository, JsonUserRepository>();
+
+
+            builder.Services.AddScoped<ScheduleService>();
+            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<TeachersService>();
+            builder.Services.AddScoped<TeacherScheduleService>();
 
             // Регистрация CORS политики
             builder.Services.AddCors(options =>

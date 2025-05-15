@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScheduleBackend.Models;
-
-using ScheduleBackend.Services;
+using ScheduleBackend.Services.Entity;
 
 [Route("[controller]")]
 [ApiController]
@@ -27,13 +26,10 @@ public class UsersController : ControllerBase
     /// <returns>Информация о пользователе.</returns>
     [HttpPost("login")]
     [ProducesResponseType(typeof(UserLoginResponse), 200)]
-    public IActionResult Login([FromBody] UserLoginRequest loginRequest)
+    public   async Task<IActionResult> Login([FromBody] UserLoginRequest loginRequest)
     {
-        var result = _userService.Authenticate(loginRequest.Username, loginRequest.Password);
-        if (result.Item2)
-        {
-            return Ok(new UserLoginResponse(result.Item1.Id));
-        }
+        var result = await _userService.Authenticate(loginRequest.Username, loginRequest.Password);
+        if (result.success) return Ok(new UserLoginResponse(result.user!.Id));
         return BadRequest("Пользователя нет.");
     }
 
@@ -44,10 +40,10 @@ public class UsersController : ControllerBase
     /// <returns>Результат операции.</returns>
     [HttpPost("add")]
     [ProducesResponseType(typeof(bool), 200)]
-    public IActionResult Add([FromBody] User userRequest)
+    public async Task<IActionResult> Add([FromBody] User userRequest)
     {
-        var result = _userService.Add(userRequest);
-        if (result)
+        var result = await _userService.Add(userRequest);
+        if (result.success)
         {
             _scheduleService.Add(userRequest.Id);
             return Ok(result);
@@ -61,9 +57,9 @@ public class UsersController : ControllerBase
     /// <returns>Список пользователей.</returns>
     [HttpGet("all")]
     [ProducesResponseType(typeof(List<User>), 200)]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
-        return Ok(_userService.GetUsers());
+        return Ok( await _userService.GetUsers());
     }
 
     /// <summary>
@@ -73,13 +69,10 @@ public class UsersController : ControllerBase
     /// <returns>Результат операции.</returns>
     [HttpDelete("delete")]
     [ProducesResponseType(typeof(bool), 200)]
-    public IActionResult Delete([FromBody] int id)
+    public async Task<IActionResult> Delete([FromBody] int id)
     {
-        var result = _userService.Delete(id);
-        if (result)
-        {
-            return Ok(result);
-        }
+        var result = await _userService.Delete(id);
+        if (result.success) return Ok(result);
         return BadRequest(result);
     }
 }

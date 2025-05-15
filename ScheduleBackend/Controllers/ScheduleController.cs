@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScheduleBackend.Models;
-using ScheduleBackend.Services;
+using ScheduleBackend.Services.Entity;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using System.Net;
@@ -62,16 +62,13 @@ namespace ScheduleBackend.Controllers
         /// <returns>Список обновленных расписаний</returns>
         [HttpPost("updateList")]
         [ProducesResponseType(typeof(List<Schedule>), 200)]
-        public IActionResult UpdateSchedule([FromBody] List<ScheduleUpdateRequest> updateRequest)
+        public async Task<IActionResult> UpdateSchedule([FromBody] List<ScheduleUpdateRequest> updateRequest)
         {
             List<Schedule> res = new List<Schedule>();
             foreach (var req in updateRequest)
             {
-                var updatedSchedule = _scheduleService.UpdateSchedule(req);
-                if (updatedSchedule == null)
-                {
-                    return BadRequest("Не удалось обновить расписание.");
-                }
+                var updatedSchedule = await _scheduleService.UpdateSchedule(req);
+                if (updatedSchedule == null) return BadRequest("Не удалось обновить расписание.");
                 res.Add(updatedSchedule);
             }
             return Ok(res);
@@ -84,9 +81,9 @@ namespace ScheduleBackend.Controllers
         /// <returns>Информация о доступности активностей и о забронированных активностях</returns>
         [HttpPost("checkListActivities")]
         [ProducesResponseType(typeof(object), 200)]
-        public IActionResult CheckActivities([FromBody] List<ActivityCheck> updateRequest)
+        public async Task<IActionResult> CheckActivities([FromBody] List<ActivityCheck> updateRequest)
         {
-            var (isSuccess, bookedActivities) = _scheduleService.CheckActivities(updateRequest);
+            var (isSuccess, bookedActivities) = await _scheduleService.CheckActivities(updateRequest);
 
             if (isSuccess)
             {
@@ -113,11 +110,10 @@ namespace ScheduleBackend.Controllers
         /// <returns>Результат проверки доступности</returns>
         [HttpPost("checkActivity")]
         [ProducesResponseType(typeof(bool), 200)]
-        public IActionResult CheckActivities(ActivityCheck updateRequest)
+        public async Task<IActionResult> CheckActivities(ActivityCheck updateRequest)
         {
-            var result = _scheduleService.CheckActivity(updateRequest);
-            if (result)
-                return Ok(result);
+            var result = await _scheduleService.CheckActivity(updateRequest);
+            if (result) return Ok(result);
             return BadRequest(result);
         }
 
@@ -129,15 +125,10 @@ namespace ScheduleBackend.Controllers
         [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(CourseCheckOkResponseExample))] // Пример для ответа 200
         [SwaggerResponseExample((int)HttpStatusCode.BadRequest, typeof(CourseCheckErrorResponseExample))] // Пример для ответа 200
         
-        public IActionResult CheckCourse([FromBody] CourseCheckRequest updateRequest)
+        public async Task<IActionResult> CheckCourse([FromBody] CourseCheckRequest updateRequest)
         {
-            var result = _scheduleService.CheckCourse(updateRequest);
-
-            if (result.Result == true)
-            {
-                return Ok(result);
-            }
-
+            var result =  await _scheduleService.CheckCourse(updateRequest);
+            if (result.Result) return Ok(result);
             return BadRequest(result);
         }
     }

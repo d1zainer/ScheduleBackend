@@ -49,7 +49,7 @@ namespace ScheduleBackend
             builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
             builder.Services.AddScoped<ITeacherScheduleRepository, TeacherScheduleRepository>();
             builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
-            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
             builder.Services.AddScoped<INotificationSender, NotificationSender>();
 
@@ -59,7 +59,7 @@ namespace ScheduleBackend
 
             // Сервисы
             builder.Services.AddScoped<ScheduleService>();
-            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<StudentService>();
             builder.Services.AddScoped<TeachersService>();
             builder.Services.AddScoped<TeacherScheduleService>();
             builder.Services.AddScoped<AdminService>();

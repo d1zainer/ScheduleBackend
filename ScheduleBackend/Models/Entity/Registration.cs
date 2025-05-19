@@ -22,25 +22,32 @@ namespace ScheduleBackend.Models.Entity
         /// Дата создания заявки.
         /// </summary>
         [Required]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt => DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
 
         /// <summary>
         /// Статус заявки (новая, в обработке, завершена и т.д.).
         /// </summary>
         [Required]
-        [MaxLength(50)]
-        public string Status { get; set; }
+        public RegistrationStatus Status { get; set; } = RegistrationStatus.New;
 
         /// <summary>
         /// Id администратора, к которому относится заявка (внешний ключ).
         /// </summary>
-        [Required]
-        public Guid AdminId { get; set; }
+
+        public Guid? AdminId { get; set; }
 
         /// <summary>
         /// Навигационное свойство к администратору.
         /// </summary>
         [ForeignKey("AdminId")]
-        public Admin Admin { get; set; }
+        public Admin? Admin { get; set; }
+    }
+
+    public enum RegistrationStatus
+    {
+        New = 0,
+        InProgress = 1,
+        Done = 2,
+        Rejected = 3
     }
 }

@@ -69,10 +69,6 @@ namespace ScheduleBackend.Models.Entity
         [MaxLength(20)]
         public string? PhoneNumber { get; set; }
 
-        /// <summary>
-        /// Список заявок, обработкой которых занимается администратор.
-        /// </summary>
-        public List<Registration> Registration { get; set; } = new();
 
         /// <summary>
         /// Создаёт объект Admin на основе AdminDto.

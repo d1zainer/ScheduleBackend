@@ -2,51 +2,7 @@
 
 namespace ScheduleBackend.Models.Dto
 {
-    /// <summary>
-    /// Запрос для авторизации пользователя.
-    /// </summary>
-    public class UserLoginRequest
-    {
-        /// <summary>
-        /// Имя пользователя для входа в систему.
-        /// </summary>
-        public string Username { get; set; }
-
-        /// <summary>
-        /// Пароль пользователя для входа в систему.
-        /// </summary>
-        public string Password { get; set; }
-    }
-
-    /// <summary>
-    /// Ответ, возвращаемый после успешной авторизации пользователя.
-    /// </summary>
-    public class UserLoginResponse
-    {
-        /// <summary>
-        /// Уникальный идентификатор пользователя.
-        /// </summary>
-        public Guid Id { get; set; }
-
-        /// <summary>
-        /// Конструктор для создания ответа с идентификатором пользователя.
-        /// </summary>
-        /// <param name="id">Идентификатор пользователя.</param>
-        public UserLoginResponse(Guid id)
-        {
-            Id = id;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
+    
     public class StudentCreateResponse
     {
         [Required]

@@ -6,7 +6,7 @@ using ScheduleBackend.Services;
 
 namespace ScheduleBackend.Repositories.Db
 {
-    public class UserRepository(ScheduleDbContext context) : IUserRepository
+    public class StudentRepository(ScheduleDbContext context) : IStudentRepository
     {
 
         public async Task<(bool success, Exception? error)> Add(Student user)

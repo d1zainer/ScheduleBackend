@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ScheduleBackend.Models;
+using ScheduleBackend.Models.Entity;
 using ScheduleBackend.Services.Entity;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using System.Net;
+using ScheduleBackend.Models.Dto;
 
 namespace ScheduleBackend.Controllers
 {
@@ -28,7 +29,7 @@ namespace ScheduleBackend.Controllers
         /// <returns>Расписание пользователя, если оно найдено</returns>
         [HttpGet("{userId}")]
         [ProducesResponseType(typeof(Schedule), 200)]
-        public IActionResult GetSchedule(int userId)
+        public IActionResult GetSchedule(Guid userId)
         {
             var userSchedule = _scheduleService.GetScheduleByUserId(userId);
             if (userSchedule == null)

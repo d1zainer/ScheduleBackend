@@ -1,18 +1,61 @@
 ﻿using Newtonsoft.Json;
-using ScheduleBackend.Models;
+using ScheduleBackend.Models.Dto;
+using ScheduleBackend.Models.Entity;
+using ScheduleBackend.Models.Messages;
+using ScheduleBackend.Repositories.Db;
 using ScheduleBackend.Repositories.Interfaces;
+using ScheduleBackend.Services.Interfaces;
 
 namespace ScheduleBackend.Services.Entity
 {
-    public class TeachersService(ITeacherRepository repository)
+    public class TeachersService(ITeacherRepository repository, INotificationSender sender)
     {
         private readonly ITeacherRepository _repository;
 
         public async Task<IEnumerable<Teacher>> GetAll() => await repository.GetAll();
-        public async Task<(bool Success, Exception? Ex)> Add(Teacher teacher) => await _repository.Add(teacher);
-        public async Task<(bool Success, Exception? Ex)> Delete(int id) => await _repository.Delete(id);
 
-        public async Task<int?> GetActiveSlots(int id)
+        public async Task<(bool Success, Exception? Ex)> Add(TeacherCreateRequest dto)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(dto.Login))
+                    throw new ArgumentException("Login обязателен.");
+                if (string.IsNullOrWhiteSpace(dto.Password))
+                    throw new ArgumentException("Password обязателен.");
+                if (string.IsNullOrWhiteSpace(dto.FirstName))
+                    throw new ArgumentException("FirstName обязателен.");
+                if (string.IsNullOrWhiteSpace(dto.LastName))
+                    throw new ArgumentException("LastName обязателен.");
+                if (string.IsNullOrWhiteSpace(dto.MiddleName))
+                    throw new ArgumentException("MiddleName обязателен.");
+                if (string.IsNullOrWhiteSpace(dto.Email))
+                    throw new ArgumentException("Email обязателен.");
+
+                var teacher = Teacher.Create(dto);
+
+                var newTeacher = await repository.Add(teacher);
+
+                if (newTeacher.Success)
+                {
+                    await sender.PublishEmailAsync(new UserCreateData()
+                    {
+                        Email = dto.Email,
+                        Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
+                        Subject = "Регистрация"
+                    });
+                }
+
+                return newTeacher;
+            }
+            catch (Exception ex)
+            {
+                return (false, ex);
+            }
+        }
+
+        public async Task<(bool Success, Exception? Ex)> Delete(Guid id) => await _repository.Delete(id);
+
+        public async Task<int?> GetActiveSlots(Guid id)
         {
             var teacher = await _repository.GetById(id);
             if (teacher == null)

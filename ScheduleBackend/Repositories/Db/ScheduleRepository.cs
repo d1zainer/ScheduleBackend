@@ -1,10 +1,10 @@
-﻿using ScheduleBackend.Models;
+﻿using ScheduleBackend.Models.Entity;
 using ScheduleBackend.Repositories.Interfaces;
 using ScheduleBackend.Services;
 
-namespace ScheduleBackend.Repositories.Json
+namespace ScheduleBackend.Repositories.Db
 {
-    public class JsonScheduleRepository : IScheduleRepository
+    public class ScheduleRepository : IScheduleRepository
     {
 
         public async Task<(bool Success, Exception? Ex)> Add(Schedule schedule)
@@ -25,7 +25,7 @@ namespace ScheduleBackend.Repositories.Json
         private async Task SaveAll(List<Schedule> schedules) => await JsonService.Save(schedules, JsonService.UsersSchedules);
 
 
-        public async Task<(bool Success, Exception? Ex)> Delete(int id)
+        public async Task<(bool Success, Exception? Ex)> Delete(Guid id)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace ScheduleBackend.Repositories.Json
         public async Task<IEnumerable<Schedule>> GetAll() =>  await LoadAll();
     
 
-        public async Task<Schedule?> GetById(int id)
+        public async Task<Schedule?> GetById(Guid id)
         {
             var schedules = await LoadAll();
             return schedules.FirstOrDefault(x => x.ScheduleId == id);

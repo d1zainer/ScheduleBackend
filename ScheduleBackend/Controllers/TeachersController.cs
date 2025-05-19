@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ScheduleBackend.Models;
+using ScheduleBackend.Models.Dto;
+using ScheduleBackend.Models.Entity;
 using ScheduleBackend.Services.Entity;
 
 namespace ScheduleBackend.Controllers
@@ -27,9 +28,9 @@ namespace ScheduleBackend.Controllers
         /// <returns>Результат добавления учителя</returns>
         [HttpPost("add")]
         [ProducesResponseType(typeof(bool), 200)]
-        public async Task<IActionResult> Add([FromBody] Teacher teacher)
+        public async Task<IActionResult> Add([FromBody] TeacherCreateRequest request)
         {
-            var result = await _teachersService.Add(teacher);
+            var result = await _teachersService.Add(request);
             if (result.Success) return Ok(result);
             return BadRequest(result.Ex);
         }
@@ -54,7 +55,7 @@ namespace ScheduleBackend.Controllers
         /// <returns>Результат удаления учителя</returns>
         [HttpDelete("delete")]
         [ProducesResponseType(typeof(bool), 200)]
-        public async Task<IActionResult> Delete([FromBody] int id)
+        public async Task<IActionResult> Delete([FromBody] Guid id)
         {
             var result = await _teachersService.Delete(id);
             if (result.Success) return Ok(result); 
@@ -68,7 +69,7 @@ namespace ScheduleBackend.Controllers
         /// <returns>Список доступных слотов</returns>
         [HttpGet("GetActiveSlots/{teacherId}")]
         [ProducesResponseType(typeof(int), 200)]
-        public async Task<IActionResult> GetActiveSlots(int teacherId)
+        public async Task<IActionResult> GetActiveSlots(Guid teacherId)
         {
             var activeSlots  = await _teachersService.GetActiveSlots(teacherId);
             if(activeSlots != null)
@@ -123,7 +124,7 @@ namespace ScheduleBackend.Controllers
         /// <returns>Список доступных слотов</returns>
         [HttpGet("GetTeachersLessons/{teacherId}")]
         [ProducesResponseType(typeof(int), 200)]
-        public async Task<IActionResult> GetTeachersLessons(int teacherId)
+        public async Task<IActionResult> GetTeachersLessons(Guid teacherId)
         {
             var list = await _lessonsService.GetLessons(teacherId);
             if (!list.Any()) return BadRequest("Занятия не найдены");

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
-using ScheduleBackend.Models;
+using ScheduleBackend.Models.Dto;
+using ScheduleBackend.Models.Entity;
 using ScheduleBackend.Repositories.Interfaces;
 
 namespace ScheduleBackend.Services.Entity
@@ -9,7 +10,7 @@ namespace ScheduleBackend.Services.Entity
 
         public async Task<List<Schedule>> GetSchedules() => (await repository.GetAll()).ToList();
 
-        public async Task<Schedule?> GetScheduleByUserId(int userId) => await repository.GetById(userId);
+        public async Task<Schedule?> GetScheduleByUserId(Guid userId) => await repository.GetById(userId);
 
         public async Task<Schedule?> UpdateSchedule(ScheduleUpdateRequest updateRequest)
         {
@@ -102,7 +103,7 @@ namespace ScheduleBackend.Services.Entity
             return result;
         }
 
-        public async Task<bool> Add(int id)
+        public async Task<bool> Add(Guid id)
         {
             var schedules = await GetSchedules();
             bool exists = schedules.Any(x => x.ScheduleId == id);
@@ -115,11 +116,11 @@ namespace ScheduleBackend.Services.Entity
             return false;
         }
 
-        private List<DaySchedule> GenerateDefaultDays()
+        public static List<DaySchedule> GenerateDefaultDays()
         {
             var defaultDays = new List<DaySchedule>();
 
-            for (int dayNumber = 1; dayNumber <= 6; dayNumber++) 
+            for (int dayNumber = 1; dayNumber <= 6; dayNumber++)
             {
                 var activities = new List<Activity>();
 
@@ -145,18 +146,21 @@ namespace ScheduleBackend.Services.Entity
             return defaultDays;
         }
 
-        // Получение времени начала занятия
-        private string GetStartTime(int activityNumber)
+        // Получение времени начала занятия (возвращает DateTime с сегодняшней датой и нужным временем)
+        private static DateTime GetStartTime(int activityNumber)
         {
+            var today = DateTime.Today;
             var baseHour = 8 + (activityNumber - 1) * 2; // Начало занятий с 8:00 с интервалом 2 часа
-            return $"{baseHour:D2}:00";
+            return new DateTime(today.Year, today.Month, today.Day, baseHour, 0, 0);
         }
 
-        // Получение времени окончания занятия
-        private string GetEndTime(int activityNumber)
+        // Получение времени окончания занятия (возвращает DateTime с сегодняшней датой и нужным временем)
+        private static DateTime GetEndTime(int activityNumber)
         {
-            var baseHour = 8 + (activityNumber - 1) * 2 + 1; // Окончание занятий через 1.5 часа
-            return $"{baseHour:D2}:30";
+            var today = DateTime.Today;
+            var baseHour = 8 + (activityNumber - 1) * 2 + 1; // Окончание занятий через 1.5 часа (здесь 1 час 30 мин, можно поправить)
+            return new DateTime(today.Year, today.Month, today.Day, baseHour, 30, 0);
         }
+
     }
 }

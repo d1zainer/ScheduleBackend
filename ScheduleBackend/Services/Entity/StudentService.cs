@@ -8,8 +8,37 @@ using ScheduleBackend.Services.Interfaces;
 
 namespace ScheduleBackend.Services.Entity
 {
-    public class StudentService(IStudentRepository repository, INotificationSender sender)
+    public class StudentService(IStudentRepository repository, INotificationSender sender, IJwtService jwtService)
     {
+
+
+        public async Task<(bool success, Exception? ex, StudentResponse? response)> GetUserByGuid(Guid id)
+        {
+            try
+            {
+
+            
+                var findUser = await repository.GetByGuid(id);
+                if (findUser is not null)
+                {
+                    return new(true, null, new()
+                    {
+                        FirstName = findUser.FirstName,
+                        LastName = findUser.LastName,
+                        MiddleName = findUser.MiddleName,
+                        Email = findUser.Email,
+                        PhoneNumber = findUser.PhoneNumber
+                    });
+                }
+
+                return (false,  new Exception("Юсера с таким айди нет"), null);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex, null);
+            }
+                
+        }
         public async Task<List<Student>> GetUsers() => (await repository.GetAll()).ToList();
 
         public async Task<(bool success, Exception? ex)> Add(StudentCreateResponse dto)

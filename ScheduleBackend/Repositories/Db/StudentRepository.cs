@@ -37,6 +37,11 @@ namespace ScheduleBackend.Repositories.Db
             return await context.Students.ToListAsync();
         }
 
+        public async Task<Student?> GetByGuid(Guid id)
+        {
+            return await context.Students.FindAsync(id);
+        }
+
         public IQueryable<Student> GetQueryable()
         {
              return context.Students;

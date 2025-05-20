@@ -52,6 +52,7 @@ namespace ScheduleBackend
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
             builder.Services.AddScoped<INotificationSender, NotificationSender>();
+            builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
 
             // DbContext
             builder.Services.AddDbContext<ScheduleDbContext>(options =>
@@ -63,7 +64,7 @@ namespace ScheduleBackend
             builder.Services.AddScoped<TeachersService>();
             builder.Services.AddScoped<TeacherScheduleService>();
             builder.Services.AddScoped<AdminService>();
-   
+            builder.Services.AddScoped<RegistrationService>();
             
 
             // Параметры валидации токена

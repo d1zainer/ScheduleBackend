@@ -27,4 +27,23 @@ namespace ScheduleBackend.Models.Dto
         public string? PhoneNumber { get; set; }
     }
 
+
+
+
+    public class StudentResponse
+    {
+
+        [Required]
+        public required string LastName { get; set; }
+
+        [Required]
+        public required string FirstName { get; set; }
+        [Required]
+        public required string MiddleName { get; set; }
+
+        public string? Email { get; set; }
+
+        public string? PhoneNumber { get; set; }
+    }
+
 }

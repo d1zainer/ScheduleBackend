@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ScheduleBackend.Models.Dto;
 
 namespace ScheduleBackend.Models.Entity
 {
@@ -11,18 +12,49 @@ namespace ScheduleBackend.Models.Entity
         [Key]
         public Guid Id { get; set; }
 
+
+        /// <summary>
+        /// Фамилия пользователя.
+        /// </summary>
+        [Required]
+        [MaxLength(100)]
+        public required string LastName { get; set; }
+
+        /// <summary>
+        /// Имя пользователя.
+        /// </summary>
+        [Required]
+        [MaxLength(100)]
+        public required string FirstName { get; set; }
+
+        /// <summary>
+        /// Отчество пользователя.
+        /// </summary>
+        [Required]
+        [MaxLength(100)]
+        public required string MiddleName { get; set; }
+
+
+        /// <summary>
+        /// Электронная почта
+        /// </summary>
+        [EmailAddress]
+        [MaxLength(100)]
+        [Required]
+        public required string Email { get; set; }
+
+
         /// <summary>
         /// Описание заявки.
         /// </summary>
-        [Required]
         [MaxLength(500)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         /// Дата создания заявки.
         /// </summary>
         [Required]
-        public DateTime CreatedAt => DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
+        public DateTime CreatedAt = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Unspecified);
 
         /// <summary>
         /// Статус заявки (новая, в обработке, завершена и т.д.).
@@ -41,6 +73,25 @@ namespace ScheduleBackend.Models.Entity
         /// </summary>
         [ForeignKey("AdminId")]
         public Admin? Admin { get; set; }
+
+
+
+
+
+        public static Registration Create(RegistrationCreateRequest request)
+        {
+            return new Registration()
+            {
+                Id = Guid.NewGuid(),
+                Description = request.Description,
+                Email = request.Email,
+                FirstName = request.FirstName,
+                MiddleName = request.MiddleName,
+                LastName = request.LastName
+            };
+        }
+
+
     }
 
     public enum RegistrationStatus

@@ -20,11 +20,6 @@ namespace ScheduleBackend.Db
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Student>(entity =>
-            {
-                entity.Property(e => e.DateOfBirth)
-                    .HasColumnType("timestamp without time zone");
-            });
             // Конфигурация Schedule -> Days -> Activities
             modelBuilder.Entity<Schedule>(scheduleBuilder =>
             {

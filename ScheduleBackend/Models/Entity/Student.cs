@@ -51,13 +51,7 @@ namespace ScheduleBackend.Models.Entity
         [Required]
         [MaxLength(100)]
         public required string MiddleName { get; set; }
-         
-        /// <summary>
-        /// Дата рождения пользователя.
-        /// </summary>
-        [Required]
-        public required DateTime DateOfBirth { get; set; }
-
+        
         /// <summary>
         /// Электронная почта (необязательно).
         /// </summary>
@@ -107,7 +101,6 @@ namespace ScheduleBackend.Models.Entity
                 LastName = dto.LastName,
                 Role = UserRole.User,
                 MiddleName = dto.MiddleName,
-                DateOfBirth = DateTime.SpecifyKind(dto.DateOfBirth, DateTimeKind.Unspecified),
                 Email = dto.Email,
                 PhoneNumber = dto.PhoneNumber,
                 ScheduleId = schedule.ScheduleId,

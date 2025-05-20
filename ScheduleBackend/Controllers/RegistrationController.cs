@@ -11,7 +11,7 @@ namespace ScheduleBackend.Controllers
     {
 
         /// <summary>
-        /// Добавить нового пользователя.
+        /// Добавить новую заявку.
         /// </summary>
         /// <param name="userRequest">Данные пользователя.</param>
         /// <returns>Результат операции.</returns>
@@ -25,7 +25,7 @@ namespace ScheduleBackend.Controllers
         }
 
         /// <summary>
-        /// Добавить нового пользователя.
+        /// Обновить статус заявки.
         /// </summary>
         /// <param name="userRequest">Данные пользователя.</param>
         /// <returns>Результат операции.</returns>
@@ -42,7 +42,7 @@ namespace ScheduleBackend.Controllers
 
 
         /// <summary>
-        /// Получить список регистраций с необязательной фильтрацией по статусу.
+        /// Получить список заявок с необязательной фильтрацией по статусу.
         /// </summary>
         /// <param name="query">Параметры сортировки и фильтрации.</param>
         /// <returns>Список регистраций.</returns>

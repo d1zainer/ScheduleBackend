@@ -32,12 +32,8 @@ public class StudentController : ControllerBase
     public async Task<IActionResult> Add([FromBody] StudentCreateResponse userRequest)
     {
         var result = await _userService.Add(userRequest);
-        if (result.success)
-        {
-           //_scheduleService.Add(userRequest.Id); 
-            return Ok(result);
-        }
-        return BadRequest(result);
+        if (result.success) return Ok(result.success);
+        return BadRequest(result.ex);
     }
 
     /// <summary>

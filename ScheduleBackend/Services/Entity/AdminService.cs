@@ -2,10 +2,11 @@
 using ScheduleBackend.Models.Entity;
 using ScheduleBackend.Models.Messages;
 using ScheduleBackend.Repositories;
+using ScheduleBackend.Repositories.Db;
 using ScheduleBackend.Repositories.Interfaces;
 using ScheduleBackend.Services.Interfaces;
 
-public class AdminService(IAdminRepository adminRepository, INotificationSender sender)
+public class AdminService(IAdminRepository adminRepository, INotificationSender sender, IUserRepository userRepository)
 {
     public async Task<(bool Success, Exception? Ex)> Add(AdminDto dto)
     {
@@ -20,20 +21,29 @@ public class AdminService(IAdminRepository adminRepository, INotificationSender 
             if (string.IsNullOrWhiteSpace(dto.LastName))
                 throw new ArgumentException("LastName обязателен.");
 
-            var admin = Admin.Create(dto);
-            var newAdmin = await adminRepository.Add(admin);
+           
+            var login = dto.Login;
 
-            if (newAdmin.Success)
+            var existUser = await userRepository.GetUserByLoginAsync(login);
+            if (existUser is null)
             {
-                await sender.PublishEmailAsync(new UserCreateData()
+                var admin = Admin.Create(dto);
+                var newAdmin = await adminRepository.Add(admin);
+
+                if (newAdmin.Success)
                 {
-                    Email = dto.Email,
-                    Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
-                    Subject = "Регистрация"
-                });
+                    await sender.PublishEmailAsync(new UserCreateData()
+                    {
+                        Email = dto.Email,
+                        Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
+                        Subject = "Регистрация"
+                    });
+                }
+
+                return newAdmin;
             }
 
-            return newAdmin;
+            return (false, new Exception("Админ с таким логином уже сущетсвует!"));
         }
         catch (Exception ex) {   return (false, ex); }
     }

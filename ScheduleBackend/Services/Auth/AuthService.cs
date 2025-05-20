@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ScheduleBackend.Db;
 using ScheduleBackend.Models.Dto;
 using ScheduleBackend.Models.Entity;
 using ScheduleBackend.Repositories.Interfaces;
@@ -8,19 +9,15 @@ namespace ScheduleBackend.Services.Auth
 {
     public class AuthService
     {
-        private readonly ITeacherRepository _teacherRepository;
-        private readonly IAdminRepository _adminRepository;
-        private readonly IStudentRepository _userRepository;
+
         private readonly IJwtService _jwtService;
         private readonly ILogger<AuthService> _logger;
-        public AuthService(ITeacherRepository teacherRepository, IAdminRepository adminRepository,
-            IStudentRepository userRepository, IJwtService jwtService, ILogger<AuthService> logger)
+        private readonly IUserRepository _userRepository;
+        public AuthService(IJwtService jwtService, ILogger<AuthService> logger, IUserRepository userRepository)
         {
-            _teacherRepository = teacherRepository;
-            _adminRepository = adminRepository;
-            _userRepository = userRepository;
             _jwtService = jwtService;
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         public async Task<(bool success, LoginResponse? response)> Authenticate(LoginRequest request)
@@ -28,41 +25,7 @@ namespace ScheduleBackend.Services.Auth
 
             var login = request.Login;
             var password = request.Password;
-
-            var usersQuery = _userRepository.GetQueryable()
-                .Select(u => new
-                {
-                    u.Id,
-                    u.Login,
-                    u.Password,
-                    Role = UserRole.User
-                });
-
-            var teachersQuery = _teacherRepository.GetQueryable()
-                .Select(t => new
-                {
-                    t.Id,
-                    t.Login,
-                    t.Password,
-                    Role = UserRole.Teacher
-                });
-
-            var adminsQuery = _adminRepository.GetQueryable()
-                .Select(a => new
-                {
-                    a.Id,
-                    a.Login,
-                    a.Password,
-                    Role = UserRole.Admin
-                });
-
-            var allUsers = usersQuery
-                .Union(teachersQuery)
-                .Union(adminsQuery);
-
-            var user = await allUsers
-                .Where(u => u.Login == login)
-                .FirstOrDefaultAsync();
+            var user = await _userRepository.GetUserByLoginAsync(login);
 
             if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
             {
@@ -74,7 +37,6 @@ namespace ScheduleBackend.Services.Auth
                 });
             }
 
-            // Никого не нашли или пароль не подошёл
             return (false, null);
         }
 

@@ -20,7 +20,7 @@ namespace ScheduleBackend.Controllers
             if (!success)
                 return BadRequest(ex?.Message);
 
-            return Ok("Admin added successfully");
+            return Ok(success);
         }
 
         [HttpGet]

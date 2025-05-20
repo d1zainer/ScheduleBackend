@@ -8,7 +8,7 @@ using ScheduleBackend.Services.Interfaces;
 
 namespace ScheduleBackend.Services.Entity
 {
-    public class TeachersService(ITeacherRepository repository, INotificationSender sender)
+    public class TeachersService(ITeacherRepository repository, INotificationSender sender, IUserRepository userRepository)
     {
         private readonly ITeacherRepository _repository;
 
@@ -31,21 +31,34 @@ namespace ScheduleBackend.Services.Entity
                 if (string.IsNullOrWhiteSpace(dto.Email))
                     throw new ArgumentException("Email обязателен.");
 
-                var teacher = Teacher.Create(dto);
+               
 
-                var newTeacher = await repository.Add(teacher);
 
-                if (newTeacher.Success)
+
+
+                var login = dto.Login;
+
+                var existUser = await userRepository.GetUserByLoginAsync(login);
+                if (existUser is null)
                 {
-                    await sender.PublishEmailAsync(new UserCreateData()
+                    var teacher = Teacher.Create(dto);
+
+                    var newTeacher = await repository.Add(teacher);
+
+                    if (newTeacher.Success)
                     {
-                        Email = dto.Email,
-                        Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
-                        Subject = "Регистрация"
-                    });
+                        await sender.PublishEmailAsync(new UserCreateData()
+                        {
+                            Email = dto.Email,
+                            Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
+                            Subject = "Регистрация"
+                        });
+                    }
+
+                    return newTeacher;
                 }
 
-                return newTeacher;
+                return (false, new Exception("Учитель с таким логином уже сущетсвует!"));
             }
             catch (Exception ex)
             {

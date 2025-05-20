@@ -53,6 +53,7 @@ namespace ScheduleBackend
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
             builder.Services.AddScoped<INotificationSender, NotificationSender>();
             builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             // DbContext
             builder.Services.AddDbContext<ScheduleDbContext>(options =>

@@ -1,6 +1,8 @@
 ﻿using System.Data;
 using Microsoft.EntityFrameworkCore;
+using ScheduleBackend.Models.Dto;
 using ScheduleBackend.Models.Entity;
+using UserLoginInfo = Microsoft.AspNetCore.Identity.UserLoginInfo;
 
 namespace ScheduleBackend.Db
 {
@@ -68,11 +70,10 @@ namespace ScheduleBackend.Db
                     // НЕ вызывай HasNoKey() здесь!
                 });
             });
-       
-
-
-            // Если есть другие сущности, их конфигурацию добавляй здесь...
         }
+
+      
+
 
 
 

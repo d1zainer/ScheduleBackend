@@ -13,7 +13,7 @@ namespace ScheduleBackend.Controllers
         /// <summary>
         /// Добавить нового пользователя.
         /// </summary>
-        /// <param name="userRequest">Данные пользователя.</param>
+        /// <param name="request">Данные пользователя.</param>
         /// <returns>Результат операции.</returns>
         [HttpPost("create")]
         [ProducesResponseType(typeof(bool), 200)]
@@ -35,7 +35,7 @@ namespace ScheduleBackend.Controllers
         {
             var result = await registrationService.UpdateRegistrationStatus(request);
             if (result.succes) return Ok(result.succes);
-            return BadRequest(result);
+            return BadRequest(result.ex == null ? "Ошибка при добавлении!" : result.ex.Message);
         }
 
 

@@ -2,6 +2,7 @@
 using ScheduleBackend.Models.Dto;
 using ScheduleBackend.Services;
 using ScheduleBackend.Models.Entity;
+using ScheduleBackend.Models.Filters;
 
 namespace ScheduleBackend.Controllers
 {
@@ -13,7 +14,8 @@ namespace ScheduleBackend.Controllers
     public class AdminController(AdminService adminService) : ControllerBase
     {
 
-        [HttpPost]
+        [HttpPost("/add")]
+        [ValidateModel]
         public async Task<IActionResult> AddAdmin([FromBody] AdminDto dto)
         {
             var (success, ex) = await adminService.Add(dto);
@@ -23,14 +25,14 @@ namespace ScheduleBackend.Controllers
             return Ok(success);
         }
 
-        [HttpGet]
+        [HttpGet("/get")]
         public async Task<ActionResult<IEnumerable<Admin>>> GetAllAdmins()
         {
             var admins = await adminService.GetAll();
             return Ok(admins);
         }
 
-        [HttpGet("{id:guid}")]
+        [HttpGet("get/{id:guid}")]
         public async Task<ActionResult<Admin>> GetAdminById(Guid id)
         {
             var admin = await adminService.GetById(id);

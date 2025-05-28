@@ -74,13 +74,13 @@ namespace ScheduleBackend.Models.Entity
         /// Создаёт объект Admin на основе AdminDto.
         /// Роль устанавливается как Admin по умолчанию.
         /// </summary>
-        public static Admin Create(AdminDto dto)
+        public static Admin Create(AdminDto dto, string hash)
         {
             return new Admin
             {
                 Id = Guid.NewGuid(),
                 Login = dto.Login,
-                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                Password = hash,
                 Role = UserRole.Admin,
                 LastName = dto.LastName,
                 FirstName = dto.FirstName,
@@ -89,5 +89,39 @@ namespace ScheduleBackend.Models.Entity
                 PhoneNumber = dto.PhoneNumber
             };
         }
+
+
+        /// <summary>
+        /// Метод валидации
+        /// </summary>
+        /// <exception cref="ValidationException"></exception>
+        public void Validate()
+        {
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(Login))
+                errors.Add("Логин не должен быть пустым.");
+
+            if (string.IsNullOrWhiteSpace(Password))
+                errors.Add("Пароль не должен быть пустым.");
+
+            if (string.IsNullOrWhiteSpace(LastName))
+                errors.Add("Фамилия не указана.");
+
+            if (string.IsNullOrWhiteSpace(FirstName))
+                errors.Add("Имя не указано.");
+
+            if (!string.IsNullOrWhiteSpace(Email) && !new EmailAddressAttribute().IsValid(Email))
+                errors.Add("Email указан некорректно.");
+
+            if (!string.IsNullOrWhiteSpace(PhoneNumber) && !new PhoneAttribute().IsValid(PhoneNumber))
+                errors.Add("Телефон указан некорректно.");
+
+            if (errors.Any())
+                throw new ValidationException(string.Join("; ", errors));
+        }
+
+
+
     }
 }

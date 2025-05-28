@@ -2,6 +2,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using ScheduleBackend.Repositories.Interfaces;
 using Swashbuckle.AspNetCore.Filters;
 using ScheduleBackend.Services.Entity;
@@ -14,6 +15,7 @@ using ScheduleBackend.Models.Dto;
 using ScheduleBackend.Repositories;
 using ScheduleBackend.Services.Auth;
 using ScheduleBackend.Models.Settings;
+using ScheduleBackend.Services;
 using ScheduleBackend.Services.Interfaces;
 using ScheduleBackend.Services.Messages;
 
@@ -60,6 +62,7 @@ namespace ScheduleBackend
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Сервисы
+            builder.Services.AddScoped<IPasswordService, PasswordService>();
             builder.Services.AddScoped<ScheduleService>();
             builder.Services.AddScoped<StudentService>();
             builder.Services.AddScoped<TeachersService>();
@@ -145,6 +148,11 @@ namespace ScheduleBackend
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
+
+
+            builder.Services.Configure<ApiBehaviorOptions>(options
+                => options.SuppressModelStateInvalidFilter = true);
+
 
             builder.Services.AddSwaggerExamplesFromAssemblyOf<CourseCheckOkResponseExample>();
             builder.Services.AddSwaggerExamplesFromAssemblyOf<CourseCheckErrorResponseExample>();

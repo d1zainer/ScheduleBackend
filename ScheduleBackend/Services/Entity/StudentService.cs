@@ -64,8 +64,12 @@ namespace ScheduleBackend.Services.Entity
                     await sender.PublishEmailAsync(new UserCreateData()
                     {
                         Email = dto.Email,
-                        Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
-                        Subject = "Регистрация"
+                        Body = $"Уважаемый клиент,<br><br>" +
+           $"Мы рады сообщить Вам, что ваша заявка была успешно одобрена!<br>" +
+           $"Теперь Вы можете войти в ваш личный кабинет, используя следующие данные:<br>" +
+           $"<strong>Логин</strong> - {dto.Login}<br>" +
+           $"<strong>Пароль</strong>- {dto.Password}",
+                        Subject = "Заявка одобрена"
                     });
                 
 

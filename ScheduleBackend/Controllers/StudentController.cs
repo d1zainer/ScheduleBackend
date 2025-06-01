@@ -32,12 +32,8 @@ public class StudentController : ControllerBase
     public async Task<IActionResult> Add([FromBody] StudentCreateResponse userRequest)
     {
         var result = await _userService.Add(userRequest);
-        if (result.success)
-        {
-           //_scheduleService.Add(userRequest.Id); 
-            return Ok(result);
-        }
-        return BadRequest(result);
+        if (result.success) return Ok(result.success);
+        return BadRequest(result.ex);
     }
 
     /// <summary>
@@ -73,9 +69,8 @@ public class StudentController : ControllerBase
     /// </summary>
     /// <param name="id">ID пользователя.</param>
     /// <returns>Результат операции.</returns>
-    [HttpDelete("delete")]
-    [ProducesResponseType(typeof(bool), 200)]
-    public async Task<IActionResult> Delete([FromBody] Guid id)
+    [HttpDelete("delete/{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
     {
         var result = await _userService.Delete(id);
         if (result.success) return Ok(result);

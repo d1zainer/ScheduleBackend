@@ -41,10 +41,8 @@ namespace ScheduleBackend.Models.Dto
 
     public class RegistrationStatusUpdateRequest
     {
-
-
         /// <summary>
-        ///// Id Админа
+        /// Id Админа
         /// </summary>
         [Required]
         public required Guid Guid { get; set; }
@@ -63,6 +61,9 @@ namespace ScheduleBackend.Models.Dto
 
     public class RegistrationSortRequest
     {
+        /// <summary>
+        /// параметр сортировки
+        /// </summary>
         public RegistrationStatus? SortByStatus { get; set; }
     }
 

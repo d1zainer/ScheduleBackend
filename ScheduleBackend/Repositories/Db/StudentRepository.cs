@@ -26,7 +26,12 @@ namespace ScheduleBackend.Repositories.Db
         {
             try
             {
+                var student = await context.Students.FindAsync(id);
+                if (student == null)
+                    return (false, null);
 
+                context.Students.Remove(student);
+                await context.SaveChangesAsync();
                 return (true, null);
             }
             catch (Exception ex) { return (false, ex); }

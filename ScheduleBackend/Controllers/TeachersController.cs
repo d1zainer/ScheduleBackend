@@ -31,7 +31,7 @@ namespace ScheduleBackend.Controllers
         public async Task<IActionResult> Add([FromBody] TeacherCreateRequest request)
         {
             var result = await _teachersService.Add(request);
-            if (result.Success) return Ok(result);
+            if (result.Success) return Ok(result.Success);
             return BadRequest(result.Ex);
         }
 

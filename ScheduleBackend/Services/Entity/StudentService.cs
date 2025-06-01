@@ -8,7 +8,7 @@ using ScheduleBackend.Services.Interfaces;
 
 namespace ScheduleBackend.Services.Entity
 {
-    public class StudentService(IStudentRepository repository, INotificationSender sender, IJwtService jwtService)
+    public class StudentService(IStudentRepository repository, INotificationSender sender, IUserRepository userRepository )
     {
 
 
@@ -57,12 +57,18 @@ namespace ScheduleBackend.Services.Entity
                 if (dto.DateOfBirth == default)
                     throw new ArgumentException("DateOfBirth обязателен.");
 
-                var user = Student.Create(dto);
-                var newUser = await repository.Add(user);
 
-                if (newUser.success)
-                    await sender.PublishEmailAsync(new UserCreateData()
+                var login = dto.Login;
+
+                var existUser = await userRepository.GetUserByLoginAsync(login);
+                if (existUser is null)
+                {
+                    var user = Student.Create(dto);
+                    var newUser = await repository.Add(user);
+
+                    if (newUser.success)
                     {
+<<<<<<< HEAD
                         Email = dto.Email,
                         Body = $"Уважаемый клиент,<br><br>" +
            $"Мы рады сообщить Вам, что ваша заявка была успешно одобрена!<br>" +
@@ -72,8 +78,20 @@ namespace ScheduleBackend.Services.Entity
                         Subject = "Заявка одобрена"
                     });
                 
+=======
+                        await sender.PublishEmailAsync(new UserCreateData()
+                        {
+                            Email = dto.Email,
+                            Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
+                            Subject = "Регистрация"
+                        });
+                    }
+>>>>>>> 6b6ed77eed9b9cd4aaa3c5bf2da160391f2608ea
 
-                return newUser;
+                    return newUser;
+                }
+
+                return (false, new Exception("Студент с таким логином уже сущетсвует!"));
             }
             catch (Exception ex)
             {

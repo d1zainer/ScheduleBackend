@@ -1,6 +1,8 @@
 ﻿using System.Data;
 using Microsoft.EntityFrameworkCore;
+using ScheduleBackend.Models.Dto;
 using ScheduleBackend.Models.Entity;
+using UserLoginInfo = Microsoft.AspNetCore.Identity.UserLoginInfo;
 
 namespace ScheduleBackend.Db
 {
@@ -46,6 +48,14 @@ namespace ScheduleBackend.Db
             });
 
 
+            modelBuilder.Entity<Registration>()
+                .HasOne(r => r.Admin)
+                .WithMany() // если у тебя нет коллекции регистраций в `Admin`, оставляй так
+                .HasForeignKey(r => r.AdminId)
+                .OnDelete(DeleteBehavior.Cascade); // КАСКАДНОЕ УДАЛЕНИЕ
+
+
+
             // Конфигурация TeacherSchedule -> Lessons (owned type)
             modelBuilder.Entity<TeacherSchedule>(teacherScheduleBuilder =>
             {
@@ -68,11 +78,10 @@ namespace ScheduleBackend.Db
                     // НЕ вызывай HasNoKey() здесь!
                 });
             });
-       
-
-
-            // Если есть другие сущности, их конфигурацию добавляй здесь...
         }
+
+      
+
 
 
 

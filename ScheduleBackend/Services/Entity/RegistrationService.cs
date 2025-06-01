@@ -16,7 +16,7 @@ namespace ScheduleBackend.Services.Entity
         }
 
 
-        public async Task<(bool succes, Exception? exa, Registration? updated)> UpdateRegistrationStatus(
+        public async Task<(bool succes, Exception? ex, Registration? updated)> UpdateRegistrationStatus(
             RegistrationStatusUpdateRequest request)
         {
 

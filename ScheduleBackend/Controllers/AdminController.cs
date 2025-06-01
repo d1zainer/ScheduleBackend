@@ -50,7 +50,7 @@ namespace ScheduleBackend.Controllers
             return Ok(updated);
         }
 
-        [HttpDelete("{id:guid}")]
+        [HttpDelete("delete/{id:guid}")]
         public async Task<IActionResult> DeleteAdmin(Guid id)
         {
             var (success, ex) = await adminService.Delete(id);
@@ -59,5 +59,6 @@ namespace ScheduleBackend.Controllers
 
             return Ok("Admin deleted");
         }
+
     }
 }

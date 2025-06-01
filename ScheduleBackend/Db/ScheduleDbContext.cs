@@ -48,6 +48,14 @@ namespace ScheduleBackend.Db
             });
 
 
+            modelBuilder.Entity<Registration>()
+                .HasOne(r => r.Admin)
+                .WithMany() // если у тебя нет коллекции регистраций в `Admin`, оставляй так
+                .HasForeignKey(r => r.AdminId)
+                .OnDelete(DeleteBehavior.Cascade); // КАСКАДНОЕ УДАЛЕНИЕ
+
+
+
             // Конфигурация TeacherSchedule -> Lessons (owned type)
             modelBuilder.Entity<TeacherSchedule>(teacherScheduleBuilder =>
             {

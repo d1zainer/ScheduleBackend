@@ -68,25 +68,18 @@ namespace ScheduleBackend.Services.Entity
 
                     if (newUser.success)
                     {
-<<<<<<< HEAD
-                        Email = dto.Email,
-                        Body = $"Уважаемый клиент,<br><br>" +
+                        await sender.PublishEmailAsync(new UserCreateData()
+                        {
+                            Email = dto.Email,
+                            Body = $"Уважаемый клиент,<br><br>" +
            $"Мы рады сообщить Вам, что ваша заявка была успешно одобрена!<br>" +
            $"Теперь Вы можете войти в ваш личный кабинет, используя следующие данные:<br>" +
            $"<strong>Логин</strong> - {dto.Login}<br>" +
            $"<strong>Пароль</strong>- {dto.Password}",
-                        Subject = "Заявка одобрена"
-                    });
-                
-=======
-                        await sender.PublishEmailAsync(new UserCreateData()
-                        {
-                            Email = dto.Email,
-                            Body = $"Пароль - {dto.Password}, логин - {dto.Login}",
-                            Subject = "Регистрация"
+                            Subject = "Заявка одобрена"
                         });
                     }
->>>>>>> 6b6ed77eed9b9cd4aaa3c5bf2da160391f2608ea
+
 
                     return newUser;
                 }
